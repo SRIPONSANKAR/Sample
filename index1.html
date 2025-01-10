@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Registration Form</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+body {
+    background-color: #000; /* Set background color to black */
+    color: #fff; /* Set default text color to white for better readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.form-control:valid, .form-select:valid {
+    background-color: #ffffff; /* Change to white when valid (input has text) */
+    color: #000; /* Ensure text color is black */
+}
+@keyframes rgbGlow {
+    0% {
+        box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.8), 0 0 100px rgba(255, 0, 0, 0.7);
+    }
+    33% {
+        box-shadow: 0 0 30px rgba(0, 255, 0, 1), 0 0 60px rgba(0, 255, 0, 0.8), 0 0 100px rgba(0, 255, 0, 0.7);
+    }
+    66% {
+        box-shadow: 0 0 30px rgba(0, 0, 255, 1), 0 0 60px rgba(0, 0, 255, 0.8), 0 0 100px rgba(0, 0, 255, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.8), 0 0 100px rgba(255, 0, 0, 0.7);
+    }
+}
+
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.card {
+    background: linear-gradient(135deg, #e0f2f1, #80cbc4);
+    border-radius: 12px;
+    padding: 30px;
+    filter: blur(0px);
+    border-radius: 15px;
+    content: "";
+    box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.8), 0 0 100px rgba(255, 0, 0, 0.7); /* Initial intense glow */
+    animation: rgbGlow 3s infinite alternate; /* Apply RGB glow animation */
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 0 50px rgba(255, 255, 255, 1), 0 0 80px rgba(255, 255, 255, 0.9), 0 0 120px rgba(255, 255, 255, 0.8); /* Extra intense white glow on hover */
+}
+
+.card h2 {
+    color: #070707;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+
+.form-label {
+    font-weight: 500;
+    color: #000000; /* Lighter color for form labels */
+}
+
+.form-select, .form-control {
+    border-radius: 6px;
+    border: 1px solid #444; /* Dark border color */
+    background-color: #000000; /* White background for form inputs */
+    color: #000; /* Black text color for form inputs */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    padding: 0.75rem 1.25rem;
+}
+
+.form-select:hover, .form-control:hover {
+    border-color: #666; /* Slightly lighter border color on hover */
+    background-color: #f0f0f0; /* Slightly lighter background on hover */
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: #0069d9;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+    background-color: #e9ecef; /* Lighter background on focus */
+}
+
+.btn-primary {
+    background-color: #0069d9;
+    border-color: #0062cc;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ffffff;
+    border-color: #000; 
+}
+
+.btn-reset {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-reset:hover {
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+#photo {
+    margin-top: 10px;
+}
+
+.form-link {
+    font-size: 1rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-link:hover {
+    text-decoration: underline;
+}
+
+.form-check {
+    margin-bottom: 1.5rem;
+    color: #000;
+    text-transform:uppercase ;
+}
+
+.tooltip-inner {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.error-message {
+    color: #ff0019; /* Red color for error messages */
+    font-size: 0.875rem;
+}
+/* Hide default radio buttons */
+.form-check-input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Create custom radio button */
+.form-check-input[type="radio"] + label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* The custom circle */
+.form-check-input[type="radio"] + label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #0069d9; /* Outer circle color */
+    background-color:transparent    ;
+    transition: background-color 0.2s ease;
+}
+
+/* Custom dot inside the circle (when checked) */
+.form-check-input[type="radio"]:checked + label::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #000000; /* Custom dot color when selected */
+    transition: background-color 0.2s ease;
+}
+
+/* Hover effect */
+.form-check-input[type="radio"] + label:hover::before {
+    border-color: #ff0000;
+}
+
+/* Focus effect */
+.form-check-input[type="radio"]:focus + label::before {
+    outline: 2px solid #000000;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <h2 class="text-center mb-4">ALUMIN REGISTRATION FORM</h2>
+            <form id="alumniForm" action="http://localhost:3000/index1" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="name" class="form-label" data-bs-toggle="tooltip" data-bs-placement="top" title="Enter your full name as it appears on official documents.">Full Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                    <div id="nameError" class="error-message"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="Rollno" class="form-label" data-bs-toggle="tooltip" data-bs-placement="top" title="Provide your Rollno  for  unique identification.">Rollno:</label>
+                    <input type="text" class="form-control" id="Rollno" name="Rollno" required>
+                    <div id="RollnoError" class="error-message"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label" data-bs-toggle="tooltip" data-bs-placement="top" title="Provide your email address for further communication.">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                    <div id="emailError" class="error-message"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label" data-bs-toggle="tooltip" data-bs-placement="top" title="Enter your phone number with country code.">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" pattern="[+0-9\s-]{10,15}" required>
+                    <div id="phoneError" class="error-message"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="gradYear" class="form-label" data-bs-toggle="tooltip" data-bs-placement="top" title="Select the year you graduated.">Graduation Year:</label>
+                    <select id="gradYear" name="gradYear" class="form-select" required>
+                        <option value="" disabled selected>Select Year</option>
+                        <script>
+                            const gradYearSelect = document.getElementById('gradYear');
+                            for (let year = 1950; year <= 2050; year++) {
+                                let option = document.createElement('option');
+                                option.value = year;
+                                option.text = year;
+                                gradYearSelect.appendChild(option);
+                            }
+                        </script>
+                    </select>
+                    <div id="gradYearError" class="error-message"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="program" class="form-label" data-bs-toggle="tooltip" data-bs-placement="top" title="Select the program you were enrolled in.">Program:</label>
+                    <select id="program" name="program" class="form-select" required>
+                        <option value="" disabled selected>Select Program</option>
+                        <!-- Options omitted for brevity -->
+                        <option value="Civil Engineering">Civil Engineering</option>
+                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        <option value="Mechatronics Engineering">Mechatronics Engineering</option>
+                        <option value="Automobile Engineering">Automobile Engineering</option>
+                        <option value="Chemical Engineering">Chemical Engineering</option>
+                        <option value="Food Technology">Food Technology</option>
+                        <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
+                        <option value="Electronics and Instrumentation Engineering">Electronics and Instrumentation Engineering</option>
+                        <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
+                        <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Computer Science and Design">Computer Science and Design</option>
+                        <option value="AIML">AIML</option>
+                        <option value="AIDS">AIDS</option>
+                        <option value="Computer Technology-PG(SS)">Computer Technology - PG(SS)</option>
+                        <option value="Computer Technology-UG(CSD)">Computer Technology-UG(CSD)</option>
+                        <option value="Computer Technology-UG(IS)">Computer Technology-UG(IS)</option>
+                        <option value="Computer Technology-UG(SS)">Computer Technology-UG(SS)</option>
+                        <option value="MCA">MCA</option>
+                        <option value="MBA">MBA</option>
+                        <!-- Add more options here -->
+                    </select>
+                    <div id="programError" class="error-message"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="country" class="form-label" data-bs-toggle="tooltip" data-bs-placement="top" title="Select the country you are currently residing in.">Country:</label>
+                    <select id="country" name="country" class="form-select" required>
+                        <option value="" disabled selected>Select Country</option>
+                        <!-- Country options -->
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="Angola">Angola</option>
+                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Bahamas">Bahamas</option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Belize">Belize</option>
+                        <option value="Benin">Benin</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Brunei">Brunei</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso">Burkina Faso</option>
+                        <option value="Burundi">Burundi</option>
+                        <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                        <option value="Cabo Verde">Cabo Verde</option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Central African Republic">Central African Republic</option>
+                        <option value="Chad">Chad</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Comoros">Comoros</option>
+                        <option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Cyprus">Cyprus</option>
+                        <option value="Czechia (Czech Republic)">Czechia (Czech Republic)</option>
+                        <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Djibouti">Djibouti</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Dominican Republic">Dominican Republic</option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                        <option value="Eritrea">Eritrea</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Eswatini (fmr. 'Swaziland')">Eswatini (fmr. 'Swaziland')</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                        <option value="Guyana">Guyana</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Holy See">Holy See</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="India">India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Iran">Iran</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kiribati">Kiribati</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Laos">Laos</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libya">Libya</option>
+                        <option value="Liechtenstein">Liechtenstein</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marshall Islands">Marshall Islands</option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Micronesia">Micronesia</option>
+                        <option value="Moldova">Moldova</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montenegro">Montenegro</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar (formerly Burma)">Myanmar (formerly Burma)</option>
+                        <option value="Namibia">Namibia</option>
+                        <option value="Nauru">Nauru</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="North Korea">North Korea</option>
+                        <option value="North Macedonia">North Macedonia</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Oman">Oman</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palau">Palau</option>
+                        <option value="Palestine State">Palestine State</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Papua New Guinea">Papua New Guinea</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                        <option value="Saint Lucia">Saint Lucia</option>
+                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                        <option value="Samoa">Samoa</option>
+                        <option value="San Marino">San Marino</option>
+                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Serbia">Serbia</option>
+                        <option value="Seychelles">Seychelles</option>
+                        <option value="Sierra Leone">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Solomon Islands">Solomon Islands</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="South Korea">South Korea</option>
+                        <option value="South Sudan">South Sudan</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Suriname">Suriname</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syria">Syria</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Timor-Leste">Timor-Leste</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Tuvalu">Tuvalu</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Emirates">United Arab Emirates</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States of America">United States of America</option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Vanuatu">Vanuatu</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                    <div id="countryError" class="error-message"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="jobTitle" class="form-label" data-bs-toggle="tooltip" data-bs-placement="top" title="Enter your Current Job Title as it appears on official documents.">Current Job Title::</label>
+                    <input type="text" class="form-control" id="jobTitle" name="jobTitle">
+                    <div id="jobTitleError" class="error-message"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="company" class="form-label">Current Company:</label>
+                    <input type="text" class="form-control" id="company" name="company">
+                    <div id="companyError" class="error-message"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="linkedin" class="form-label">LinkedIn Profile:</label>
+                    <input type="url" class="form-control" id="linkedin" name="linkedin">
+                    <div id="linkedinError" class="error-message"></div>
+                    <div id="linkedinLink" class="mt-2"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="interests" class="form-label">Areas of Interest:</label>
+                    <input type="text" class="form-control" id="interests" name="interests">
+                    <div id="interestsError" class="error-message"></div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Willing to Volunteer:</label>
+                    <div id="volunteer">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="volunteer" id="volunteerYes" value="yes" required>
+                            <label class="form-check-label" for="volunteerYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="volunteer" id="volunteerNo" value="no" required>
+                            <label class="form-check-label" for="volunteerNo">No</label>
+                        </div>
+                        <div id="volunteerError" class="error-message"></div>
+                    </div>
+                </div>              
+                <div class="mb-3">
+                    <label class="form-label">Willing to Take Guest Lecture:</label>
+                    <div id="guestLecture">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="guestLecture" id="guestLectureYes" value="yes" required>
+                            <label class="form-check-label" for="guestLectureYes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="guestLecture" id="guestLectureNo" value="no" required>
+                            <label class="form-check-label" for="guestLectureNo">No</label>
+                        </div>
+                        <div id="guestLectureError" class="error-message"></div>
+                    </div>
+                </div>
+                
+                <!-- Photo Upload -->
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Upload Photo:</label>
+                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*" required>
+                    <div id="photoError" class="error-message"></div>
+                </div>
+                <!-- Checkbox Confirmation -->
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="confirm" name="confirm" required>
+                    <label class="form-check-label" for="confirm">
+                        I confirm that all the provided information is correct.
+                    </label>
+                    <div id="confirmError" class="error-message"></div>
+                </div>
+                <!-- Submit and Reset buttons -->
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="reset" class="btn btn-primary">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        const inputs = document.querySelectorAll('.form-control, .form-select');
+
+inputs.forEach(input => {
+    input.addEventListener('input', function() {
+        if (input.value.trim() !== '') {
+            input.style.backgroundColor = '#ffffff';  // Change background to white
+        } else {
+            input.style.backgroundColor = '#000000';  // Revert back to the default background
+        }
+    });
+});
+        // Initialize tooltips
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+
+        function validateForm() {
+            let isValid = true;
+            clearErrors();
+
+            // Validate Full Name
+            const name = document.getElementById('name').value;
+            if (!name || name.length < 3) {
+                showError('nameError', 'Full Name must be at least 3 characters long.');
+                isValid = false;
+            }
+
+            // Validate Email
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                showError('emailError', 'Please enter a valid email address.');
+                isValid = false;
+            }
+
+            // Validate Phone Number
+            const phone = document.getElementById('phone').value;
+            if (!/^\d{10,15}$/.test(phone)) {
+                showError('phoneError', 'Phone number must be between 10 to 15 digits.');
+                isValid = false;
+            }
+
+            // Validate Graduation Year
+            const gradYear = document.getElementById('gradYear').value;
+            if (!gradYear) {
+                showError('gradYearError', 'Please select your graduation year.');
+                isValid = false;
+            }
+
+            // Validate Program
+            const program = document.getElementById('program').value;
+            if (!program) {
+                showError('programError', 'Please select your program.');
+                isValid = false;
+            }
+
+            // Validate Country
+            const country = document.getElementById('country').value;
+            if (!country) {
+                showError('countryError', 'Please select your country.');
+                isValid = false;
+            }
+
+            // Validate LinkedIn Profile
+            const linkedin = document.getElementById('linkedin').value;
+            if (linkedin && !/^https?:\/\/[^\s]+$/.test(linkedin)) {
+                showError('linkedinError', 'Please enter a valid LinkedIn URL.');
+                isValid = false;
+            }
+
+            // Validate Photo Upload
+            const photo = document.getElementById('photo').files.length;
+            if (photo === 0) {
+                showError('photoError', 'Please upload a photo.');
+                isValid = false;
+            }
+
+            // Validate Checkbox
+            const confirm = document.getElementById('confirm').checked;
+            if (!confirm) {
+                showError('confirmError', 'You must confirm that all information is correct.');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+        }
+
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(el => el.textContent = '');
+        }
+
+        // Form submission script
+        document.getElementById('alumniForm').addEventListener('submit', function(event) {
+            if (!validateForm()) {
+                event.preventDefault(); // Prevent actual form submission if validation fails
+            } else {
+                // Get the LinkedIn URL
+                const linkedinURL = document.getElementById('linkedin').value;
+                const linkedinLinkDiv = document.getElementById('linkedinLink');
+
+                // If URL is not empty
+                if (linkedinURL) {
+                    // Create a clickable link
+                    linkedinLinkDiv.innerHTML = `<a href="${linkedinURL}" class="form-link" target="_blank">View LinkedIn Profile</a>`;
+                } else {
+                    linkedinLinkDiv.innerHTML = ''; // Clear the link if no URL is entered
+                }
+            }
+        });
+    </script>
+</body>
+</html>

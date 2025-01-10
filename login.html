@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+  <title>3D Login and Sign Up Form</title>
+  <script>
+    // Helper function to validate email format
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    // Validate Login Form
+    function validateLoginForm() {
+      const email = document.getElementById("logemail").value;
+      const password = document.getElementById("logpass").value;
+
+      // Check if email and password are filled
+      if (email === "" || password === "") {
+        alert("Please fill in all fields.");
+        return false;
+      }
+
+      // Check if email format is valid
+      if (!validateEmail(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+
+      // If validation passes, redirect to index.html
+      window.location.href = "index.html";
+      return true;
+    }
+
+    // Validate Sign Up Form
+    // Validate Sign Up Form
+// Validate Sign Up Form
+function validateSignupForm() {
+    const name = document.getElementById("logname").value.trim();
+    const email = document.getElementById("logemail").value.trim();
+    const password = document.getElementById("logpass").value.trim();
+    const department = document.getElementById("logdept").value.trim();
+    const batch = document.getElementById("logbatch").value.trim();
+
+    // Debugging log to check values
+    console.log("Name: ", name);
+    console.log("Email: ", email);
+    console.log("Password: ", password);
+    console.log("Department: ", department);
+    console.log("Batch: ", batch);
+
+    // Check if all fields are filled
+    //if (!name || !email || !password || !department || !batch) {
+    //    alert("Please fill in all fields.");
+    //    return false;
+    //s}
+
+    // Check if email format is valid
+    //if (!validateEmail(email)) {
+      //  alert("Please enter a valid email address.");
+        //return false;
+   // }
+
+    return true;  // Allow form submission if validation passes
+}
+
+
+  </script>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+  body{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #fff;
+    background: #12f8ad;
+    overflow-x: hidden;
+  }
+  a { cursor: pointer; transition: all 200ms linear; }
+  
+  a:hover { text-decoration: none; }
+  
+  .link { color: #fff; }
+  
+  .link:hover { color: #12f8ad; }
+  
+  p { font-weight: 500; font-size: 14px; line-height: 1.7; }
+  
+  h4 { font-weight: 600; }
+  
+  h6 span{
+      padding: 0 20px;
+      text-transform: uppercase;
+      font-weight: 700;
+  }
+  .section{
+      position: relative;
+      width: 100%;
+      display: block;
+  }
+  .full-height{ min-height: 100vh; }
+  
+  [type="checkbox"]:checked,
+  [type="checkbox"]:not(:checked){
+      position: absolute;
+      left: -9999px;
+  }
+  .checkbox:checked + label,
+  .checkbox:not(:checked) + label{
+      position: relative;
+      display: block;
+      text-align: center;
+      width: 60px;
+      height: 16px;
+      border-radius: 8px;
+      padding: 0;
+      margin: 10px auto;
+      cursor: pointer;
+      background-color: #ffffff;
+  }
+  .checkbox:checked + label:before,
+  .checkbox:not(:checked) + label:before{
+      position: absolute;
+      display: block;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      color: #12f8ad;
+      background-color: #2a2b38;
+      font-family: 'unicons';
+      content: '\eb4f';
+      z-index: 20;
+      top: -10px;
+      left: -10px;
+      line-height: 36px;
+      text-align: center;
+      font-size: 24px;
+      transition: all 0.5s ease;
+  }
+  .checkbox:checked + label:before {
+      transform: translateX(44px) rotate(-270deg);
+  }
+  .card-3d-wrap {
+      position: relative;
+      width: 440px;
+      max-width: 100%;
+      height: 400px;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      perspective: 800px;
+      margin-top: 40px;
+  }
+  .card-3d-wrapper {
+      width: 100%;
+      height: 120%;
+      position:absolute;    
+      top: 0;
+      left: 0;  
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      transition: all 600ms ease-out; 
+  }
+  .card-front, .card-back {
+      width: 100%;
+      height: 100%;
+      background-color: #2a2b38;
+      position: absolute;
+      border-radius: 6px;
+      left: 0;
+      top: 0;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+  }
+  .card-back {
+      transform: rotateY(180deg);
+  }
+  .checkbox:checked ~ .card-3d-wrap .card-3d-wrapper {
+      transform: rotateY(180deg);
+  }
+  .center-wrap{
+      position: absolute;
+      width: 100%;
+      padding: 0 35px;
+      top: 50%;
+      left: 0;
+      transform: translate3d(0, -50%, 35px) perspective(100px);
+      z-index: 20;
+      display: block;
+  }
+  .form-group{ 
+      position: relative;
+      display: block;
+      margin: 0;
+      padding: 0;
+  }
+  .form-style {
+      padding: 13px 20px;
+      padding-left: 55px;
+      height: 48px;
+      width: 100%;
+      font-weight: 500;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: 0.5px;
+      outline: none;
+      color: #c4c3ca;
+      background-color: #1f2029;
+      border: none;
+      transition: all 200ms linear;
+      box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+  }
+  .form-style:focus,
+  .form-style:active {
+      border: none;
+      outline: none;
+      box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+  }
+  .input-icon {
+      position: absolute;
+      top: 0;
+      left: 18px;
+      height: 48px;
+      font-size: 24px;
+      line-height: 48px;
+      text-align: left;
+      color: #12f8ad;
+      transition: all 200ms linear;
+  }
+  .form-group input:-ms-input-placeholder  {
+      color: #c4c3ca;
+      opacity: 0.7;
+      transition: all 200ms linear;
+  }
+  .form-group input::-moz-placeholder  {
+      color: #c4c3ca;
+      opacity: 0.7;
+      transition: all 200ms linear;
+  }
+  .form-group input:-moz-placeholder  {
+      color: #c4c3ca;
+      opacity: 0.7;
+      transition: all 200ms linear;
+  }
+  .form-group input::-webkit-input-placeholder  {
+      color: #c4c3ca;
+      opacity: 0.7;
+      transition: all 200ms linear;
+  }
+  .form-group input:focus:-ms-input-placeholder  {
+      opacity: 0;
+      transition: all 200ms linear;
+  }
+  .form-group input:focus::-moz-placeholder  {
+      opacity: 0;
+      transition: all 200ms linear;
+  }
+  .form-group input:focus:-moz-placeholder  {
+      opacity: 0;
+      transition: all 200ms linear;
+  }
+  .form-group input:focus::-webkit-input-placeholder  {
+      opacity: 0;
+      transition: all 200ms linear;
+  }
+  .btn{  
+      border-radius: 4px;
+      height: 44px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 200ms linear;
+      padding: 0 30px;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      -ms-flex-pack: center;
+      text-align: center;
+      border: none;
+      background-color: #12f8ad;
+      color: #fff;
+      box-shadow: 0 8px 24px 0 rgba(18, 248, 173,.2);
+  }
+  .btn:active,
+  .btn:focus{  
+    background-color: #fff;
+    color: #12f8ad;
+    box-shadow: 0 8px 24px 0 rgba(255,255,255,.2);
+  }
+  .btn:hover{  
+    background-color: #fff;
+    color:#12f8ad;
+    box-shadow: 0 8px 24px 0 rgba(255,255,255,.2);
+  }
+  .logo {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: block;
+    z-index: 100;
+    transition: all 250ms linear;
+  }
+  .logo img {
+    height: 26px;
+    width: auto;
+    display: block;
+  }
+  .my-custom-cursor {
+            cursor:url('file:///D:/Downloads/running.svg'), auto; 
+        }
+        body 
+        {
+  transition: all 1s;
+}
+
+
+/* Adjust font size for the smaller container */
+h1, h3 {
+  font-size: 12px;  /* Smaller font for title and subtitle */
+  color: #12f8ad;
+  text-align: center;
+}
+
+@media only screen and (max-height: 200px) {
+  .boards {
+    width: 50%;
+    height: 100%;
+  }
+}
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(34, 34, 34, 0.8); /* Semi-transparent background for preloader */
+      z-index: 9999; /* Keep it on top */
+    }
+    #loader {
+      display: block;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      width: 150px;
+      height: 150px;
+      margin: -75px 0 0 -75px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #9370DB;
+      animation: spin 2s linear infinite;
+    }
+    #loader:before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #BA55D3;
+      animation: spin 3s linear infinite;
+    }
+    #loader:after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #FF00FF;
+      animation: spin 1.5s linear infinite;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    #login-page {
+      display: none;/* Initially hide the login page */
+    
+    }
+
+  </style>
+</head>
+<body class="my-custom-cursor">
+  <!--<div id="preloader">id="login-page"
+    <div id="loader"></div>
+  </div>-->
+  <div class="containera" >
+  <div class="section">
+    <div class="container">
+      <div class="row full-height justify-content-center">
+        <div class="col-12 text-center align-self-center py-5">
+          <div class="section pb-5 pt-5 pt-sm-2 text-center">
+            <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
+            <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+            <label for="reg-log"></label>
+            <div class="card-3d-wrap mx-auto">
+              <div class="card-3d-wrapper">
+
+                <!-- Login Form -->
+                <div class="card-front">
+                  <div class="center-wrap">
+                    <div class="section text-center">
+                      <h4 class="mb-4 pb-3">Log In</h4>
+                      <form onsubmit="return validateLoginForm();" action="http://localhost:3000/login" method="POST">
+                        <div class="form-group">
+                          <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="on">
+                          <i class="input-icon uil uil-at"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                          <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="on">
+                          <i class="input-icon uil uil-lock-alt"></i>
+                        </div>
+                        <button type="submit" class="btn mt-4">Submit</button>
+                      </form>
+                      <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div class="card-back">
+                  <div class="center-wrap">
+                    <div class="section text-center">
+                      <h4 class="mb-4 pb-3">Sign Up</h4>
+                      <form onsubmit="return validateSignupForm();" action="http://localhost:3000/signup" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="on" required>
+                            <i class="input-icon uil uil-user"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="on" required>
+                            <i class="input-icon uil uil-at"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="on" required>
+                            <i class="input-icon uil uil-lock-alt"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="text" name="logdept" class="form-style" placeholder="Your Department" id="logdept" autocomplete="on" required>
+                            <i class="input-icon uil uil-building"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="text" name="logbatch" class="form-style" placeholder="Your Batch" id="logbatch" autocomplete="on+" required>
+                            <i class="input-icon uil uil-calendar-alt"></i>
+                        </div>
+                        <button type="submit" class="btn mt-4">Submit</button>
+                    </form>
+                    
+                    </div>
+                  </div>
+                </div>
+                <!-- End of Sign Up Form -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Preloader function
+    window.onload = function() {
+      const preloader = document.getElementById('preloader');
+      const loginPage = document.getElementById('login-page');
+      document.body.style.backgroundColor = '#000'; // Set background color to black
+      
+      // Hide the preloader after 5 seconds and show the login page
+      setTimeout(function() {
+        preloader.style.display = 'none'; // Hide the preloader
+        loginPage.style.display = 'block'; // Show the login page
+        document.body.style.backgroundColor = '#12f8ad'; // Set the background color back to its original state
+      }, 5000); // 5000 milliseconds = 5 seconds
+    };
+var button = document.getElementsByClassName("buttons")[0];
+var head = document.querySelector(".container h3");
+
+var toggled = false;
+button.addEventListener("click", () => {
+  if (toggled) {
+    button.style.top = "0%";
+    document.body.style.backgroundColor = "white";
+    document.body.style.color = "black";
+    toggled = false;
+    return;
+  }
+  toggled = true;
+  button.style.top = "10%";
+  document.body.style.backgroundColor = "black";
+  document.body.style.color = "white";
+});
+
+    </script>
+</body>
+</html>

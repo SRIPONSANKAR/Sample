@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Alumni Association, SPS Institute of Technology">
+    <meta name="keywords" content="Alumni, SPS Institute, Technology, Events">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="favicon.png">
+    <title>Alumni Association, SPS Institute of Technology</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <style>
+        /* Background Style */
+        body {
+            background: linear-gradient(to right, #4A90E2, #50E3C2);
+            color: #333;
+            transition: all 0.3s ease-in-out;
+            font-family: 'PT Sans', sans-serif;
+        }
+
+        /* Header transition on hover */
+        .main-menu ul li a {
+            transition: color 0.3s ease-in-out;
+        }
+
+        .main-menu ul li a:hover {
+            color: #3498db;
+        }
+
+        /* Smooth transition for images */
+        .blog-img img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .blog-img img:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+
+        /* Smooth transition for buttons */
+        .btn-outline-primary {
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            padding: 10px 20px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        /* Map Section */
+        .map {
+            position: relative;
+            width: 100%;
+            margin: 20px 0;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .map iframe:hover {
+            transform: scale(1.02); /* Slight zoom effect for the map */
+        }
+
+        /* Aligning map-address-text within the iframe */
+        .map-address-text {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            color: #333;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .map-address-text:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+
+        .map-address-text ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .map-address-text li {
+            line-height: 1.6;
+        }
+
+        /* Footer links */
+        .footer-section .social-links a {
+            transition: color 0.3s ease-in-out;
+        }
+
+        .footer-section .social-links a:hover {
+            color: #3498db;
+        }
+
+        /* Blog Section */
+        .blog-section .blog-item {
+            margin-bottom: 30px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .blog-section .blog-item:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="inner-header d-flex align-items-center justify-content-between">
+                <div class="logo">
+                    <a href="index.html"><img src="./logo.jpg" alt="Logo" class="img-fluid" width="150px"></a>
+                </div>
+                <nav class="main-menu mobile-menu">
+                    <ul>
+                        <li><a href="./index.html" class="active">Home</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recent Events</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="data/Report1.pdf">Career Guidance - 05 Oct, 2019</a></li>
+                                <li><a href="data/Report2.pdf">Journey into Sound Healing - 21 Nov, 2019</a></li>
+                            </ul>
+                        </li>
+                        <li class="phone-num">
+                            <i class="fa fa-envelope"></i><span>alumni@msit.in</span>
+                        </li>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Blog Section Begin -->
+    <section class="blog-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-blog-item plain-text text-center">
+                        <h2>Recent Events</h2>
+                        <span style="font-weight: bold;">-------></span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-blog-item blog-item">
+                        <div class="blog-img">
+                            <img src="img/blog/blog-1.jpg" alt="" class="img-fluid">
+                        </div>
+                        <div class="blog-text">
+                            <span class="blog-time">05 Oct, 2019</span>
+                            <h3>Career Guidance</h3>
+                            <p>To mark the beginning of the newly registered "SPS99 Institute of Technology Alumni Association", a session on "Career guidance" was organised for the students of MSIT on 5th October, 2019.</p>
+                            <div class="blog-widget text-center">
+                                <a href="data/Report1.pdf" class="btn btn-outline-primary">View Report</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-blog-item blog-item">
+                        <div class="blog-img">
+                            <img src="img/blog/blog-2.jpg" alt="" class="img-fluid">
+                        </div>
+                        <div class="blog-text">
+                            <span class="blog-time">21 Nov, 2019</span>
+                            <h3>Journey into Sound Healing</h3>
+                            <p>MSIT Alumni Association organized a session for the faculty of MSIT by Mr. M.V. Priyank, an Alumni on 21st November 2019.</p>
+                            <div class="blog-widget text-center">
+                                <a href="data/Report2.pdf" class="btn btn-outline-primary">View Report</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Section End -->
+
+    <!-- Map Section Begin -->
+    <div id="contact" class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.9359296499156!2d77.59767407452317!3d11.26612014997141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96d7c4c269e29%3A0x59fc34a434cc7ac2!2sKongu%20Engineering%20College%20Entrance!5e0!3m2!1sen!2sin!4v1728803151906!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-address-text">
+            <ul>
+                <li><strong>Kongu Engineering College</strong><br>Perundurai - 638060</li>
+                <li><strong>Phone:</strong> 04294 226 555</li>
+                <li><strong>Email:</strong> alumni@msit.in</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Map Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container-fluid text-center">
+            <div class="footer-text">
+                <p>&copy; <script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/groups/msitalumni/"><i class="fa fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search model -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/circle-progress.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
